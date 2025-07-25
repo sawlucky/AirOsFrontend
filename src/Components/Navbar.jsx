@@ -1,53 +1,69 @@
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "../utils/userSlice";
+// import { useDispatch } from "react-redux";
+// import { addUser, removeUser } from "../utils/userSlice";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
+//   const dispatch = useDispatch();
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+//   const fetchUserData = async () => {
+//     try {
+//       const response = await axios.get(`${API_BASE_URL}/user`, {
+//         withCredentials: true,
+//       });
+      
+//         setUserData(response.data);
+//         console.log(userData);
+//       dispatch(addUser({ loggedInUser: response.data }));
+//     } catch (error) {
+//       setUserData(null);
+//     }
+//   };
 
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/user", {
-        withCredentials: true,
-      });
-      setUserData(response.data);
-      dispatch(addUser({ loggedInUser: response.data }));
-    } catch (error) {
-      setUserData(null);
-    }
-  };
+//  useEffect(() => {
+//    const fetchUserData = async () => {
+//      try {
+//        const response = await axios.get(`${API_BASE_URL}/user`, {
+//          withCredentials: true,
+//        });
 
-  useEffect(() => {
-    fetchUserData();
-  }, [navigate]);
+//        const user = response.data;
+//        setUserData(user);
+//        console.log("Fetched User:", user);
 
-  const handleSignInClick = () => {
-    window.location.href = "http://localhost:8080/auth/google";
+//        dispatch(addUser({ loggedInUser: user }));
+//      } catch (error) {
+//        console.error("User fetch error:", error);
+//        setUserData(null);
+//      }
+//    };
+
+//    fetchUserData();
+//  }, [API_BASE_URL, dispatch]);
+
+    const handleSignInClick = () => {
+      alert("This function will be working soon")
+    // window.location.href = `${API_BASE_URL}/auth/google`;
   };
 
   const HandleLogout = async () => {
     try {
-      await axios.post(
-        "http://localhost:8080/logout",
-        {},
-        { withCredentials: true }
-      );
+      await axios.post(`${API_BASE_URL}/logout`, {}, { withCredentials: true });
       setUserData(null);
-      dispatch(removeUser());
+    //   dispatch(removeUser());
       window.location.reload();
       navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
     }
   };
-
+ 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -189,7 +205,7 @@ const Navbar = () => {
                 onClick={handleSignInClick}
                 className="flex items-center gap-2 hover:bg-yellow-300 transition-colors rounded-full"
               >
-                <div className="w-8 h-8 rounded-full bg-yellow-400 bg-gray-100 border border-gray-200 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-yellow-400  border border-gray-200 flex items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -240,7 +256,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
        {isMobileMenuOpen && (
-  <div className="fixed inset-0 bg-[#122]/95 z-40 flex flex-col bg-[#112222]/90 pl-8 justify-center transition-opacity duration-300">
+  <div className="fixed inset-0 bg-[#122]/95 z-40 flex flex-col  pl-8 justify-center transition-opacity duration-300">
     <button
       onClick={toggleMobileMenu}
       className="absolute top-6 right-6 text-white focus:outline-none"

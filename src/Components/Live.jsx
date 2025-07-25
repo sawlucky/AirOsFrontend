@@ -10,6 +10,7 @@ import LiveChat from "./LiveChat";
 import axios from "axios";
 
 const Live = () => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,7 +23,9 @@ const [showChat, setShowChat] = useState(false);
       setIsLoading(true);
       setError(null);
       try {
-        const response = await axios.get("http://localhost:8080/admin/getEvents");
+          const response = await axios.get(
+              `${API_BASE_URL}/admin/getEvents`
+              );
         if (response.data) {
           setEvents(response.data);
           console.log("Fetched events:", response.data);
@@ -46,7 +49,7 @@ const [showChat, setShowChat] = useState(false);
           <MainLiveView />
         </div>
         {/* Live Chat - Stacks below on small screens, fixed width on desktop */}
-        <div className="hidden lg:block w-full lg:w-80 h-auto lg:h-[600px] bg-[#191919] lg:ml-0 mt-9 lg:mt-0 rounded-lg overflow-hidden lg:mr-8">
+        <div className="hidden lg:block w-full lg:w-80 h-auto lg:h-[680px] bg-[#191919] lg:ml-0 mt-9 lg:mt-0 rounded-lg overflow-hidden lg:mr-8">
           <LiveChat />
         </div>
       </div>
@@ -70,21 +73,21 @@ const [showChat, setShowChat] = useState(false);
                 &times;
               </button>
             </div>
-            <div className="h-[400px] overflow-y-auto">
+            <div className="h-[600px] overflow-y-auto">
               <LiveChat />
             </div>
           </div>
         </div>
       )}
     {/* Main Live View (Radio Stream) */}
-       <h2 className="text-white text-xl sm:text-2xl font-bold mb-2 ml-4 sm:ml-6 md:ml-8 lg:ml-16">I Redesigned the ENTIRE UI from Scratch</h2>
+       {/* <h2 className="text-white text-xl sm:text-2xl font-bold mb-2 ml-4 sm:ml-6 md:ml-8 lg:ml-16">I Redesigned the ENTIRE UI from Scratch</h2>
 <div className="hidden lg:block w-full lg:w-[calc(100%-28rem)] lg:pr-2 mb-2 ml-4 sm:ml-6 md:ml-8 lg:ml-16">
   <div className="border border-gray-400 border-0.5 rounded-lg p-4 ">
     <p className="text-gray-300 mb-2">I tried to redesign YouTube's UI and make it more user-friendly.</p>
     <p className="text-gray-300 mb-2">Hope you enjoy!</p>
     <a href="#" className="text-gray-400 hover:text-blue-300">Show more</a>
   </div>
-</div>
+</div> */}
    
     
       <div className="flex flex-col items-start px-4 sm:px-6 md:px-8 lg:px-16 my-6 sm:my-9">

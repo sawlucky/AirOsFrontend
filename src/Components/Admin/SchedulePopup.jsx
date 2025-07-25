@@ -12,7 +12,7 @@ const SchedulePopup = ({ onClose, onCreate, isLoading }) => {
     fileImage: null,
   });
 
-  const days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun", "All"];
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "All"];
 
   const handleDayToggle = (day) => {
     if (day === "All") {

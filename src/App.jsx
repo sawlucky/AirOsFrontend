@@ -10,7 +10,7 @@ import AdminPannel from "./Components/AdminPannel";
 import AdminLogin from "./Components/Admin/AdminLogin"
 import PaymentUnsuccessful from "./Components/PaymentUnsuccessful";
 import PaymentSuccess from "./Components/PaymentSuccess";
-
+import ErrorPage from "./Components/ErrorPage";
 const App = () => {
   const appRouter = createBrowserRouter([
     {
@@ -38,14 +38,14 @@ const App = () => {
       path: "/contact",
       element: <Contact />,
     },
-    {
-      path: "/admin",
-      element: <AdminPannel />,
-    },
-    {
-      path: "/adminLogin",
-      element: <AdminLogin />,
-    },
+    // {
+    //   path: "/admin",
+    //   element: <AdminPannel />,
+    // },
+    // {
+    //   path: "/adminLogin",
+    //   element: <AdminLogin />,
+    // },
 
     {
       path: "/cancel",
@@ -54,7 +54,11 @@ const App = () => {
     {
       path: "/success",
       element: <PaymentSuccess />,
-    },
+      },
+      {
+          path: "*",
+          element:<ErrorPage/>
+    }
   ]);
   return (
     <div>

@@ -1,8 +1,8 @@
 
 import React, { useState, Suspense } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import Navbar from "./Navbar";
 import axios from "axios";
 
@@ -10,13 +10,16 @@ const Footer = React.lazy(() => import("./Footer"));
 const FrequentlyAsked = React.lazy(() => import("./FrequentlyAsked"));
 
 const DonateUs = () => {
-  const userData = useSelector((store) => store?.user?.loggedInUser) || {};
-  const { _id, username, email } = userData;
-  const navigate = useNavigate();
+//   const userData = useSelector((store) => store?.user?.loggedInUser) || {};
+//   const { _id, username, email } = userData;
+//   const navigate = useNavigate();
 
-  if (!_id) {
-    navigate("/");
-  }
+//   if (!_id) {
+//     navigate("/");
+//   }
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+//   console.log(API_BASE_URL);
 
   const donateMoney = [5, 10, 15, 40];
   const [inputVal, setInputVal] = useState("");
@@ -46,13 +49,14 @@ const DonateUs = () => {
         import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
       );
 
-      const responseData = await axios.post(
-        "http://localhost:8080/payment/create-checkout-session",
+        const responseData = await axios.post(
+          `${API_BASE_URL}/payment/create-checkout-session`
+       ,
         {
           amount: inputVal,
-          userEmail: email || "Default",
-          userName: username || "Anonymous",
-          userId: _id,
+          userEmail: "airos@mail.com" || "Default",
+          userName: "airos" || "Anonymous",
+          userId: 101,
         },
         {
           headers: {
@@ -80,7 +84,7 @@ const DonateUs = () => {
        {/* Upper section Heading */}
        <div className="relative px-8 py-12">
          <div className="max-w-5xl mx-auto text-center">
-           <h1 className="text-4xl md:text-7xl font-extrabold text-white font-sans leading-tight mb-8 font-['Nunito Sans'] leading-[89.19px]">
+           <h1 className="text-4xl md:text-7xl font-extrabold text-white  leading-tight mb-8 font-['Nunito Sans'] leading-[89.19px]">
              Great things begin with small acts of help
            </h1>
            <p className="text-center max-w-5xl justify-center items-center text-white text-xl font-normal font-['Nunito Sans'] leading-relaxed">
@@ -111,10 +115,10 @@ const DonateUs = () => {
             <div className="w-full bg-[#122] border border-gray-600 rounded-xl p-4 sm:p-6 flex flex-col justify-between lg:h-[500px]">
               {/* Top Section */}
               <div className="space-y-4">
-                <div className="text-white text-sm sm:text-base font-sans font-normal font-['Nunito_Sans']">
+                <div className="text-white text-sm sm:text-base  font-normal font-['Nunito_Sans']">
                   Send a Gift 🎉
                 </div>
-                <div className="text-white text-sm sm:text-base font-sans font-normal font-['Nunito_Sans']">
+                <div className="text-white text-sm sm:text-base  font-normal font-['Nunito_Sans']">
                   Enter the amount
                 </div>
 
@@ -188,7 +192,7 @@ const DonateUs = () => {
                 <div className="w-full bg-emerald-200 rounded-md px-3 py-2">
                   <p className="text-black text-xs sm:text-sm font-bold font-['Nunito_Sans']">
                     Note:
-                    <span className="ml-1 font-normal font-sans">
+                    <span className="ml-1 font-normal ">
                       Your support helps us bring uninterrupted live music, podcasts, and cultural programs to our global audience.
                     </span>
                   </p>
@@ -199,10 +203,10 @@ const DonateUs = () => {
         </div>
       </div>
 
-      <div className="text-center text-base sm:text-lg md:text-xl text-white font-sans font-normal font-['Nunito_Sans'] leading-relaxed px-4">
+      <div className="text-center text-base sm:text-lg md:text-xl text-white  font-normal font-['Nunito_Sans'] leading-relaxed px-4">
         🎧 Your Support Keeps Us Streaming!
       </div>
-      <div className="text-center text-base sm:text-lg md:text-xl text-white font-sans font-normal font-['Nunito_Sans'] leading-relaxed px-4 mt-2">
+      <div className="text-center text-base sm:text-lg md:text-xl text-white  font-normal font-['Nunito_Sans'] leading-relaxed px-4 mt-2">
         🙏 Donate Today & Be Part of Our Radio Family!
       </div>
 
@@ -212,30 +216,30 @@ const DonateUs = () => {
         <div className="absolute w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 left-[calc(50%-100px)] sm:left-[calc(50%-120px)] md:left-[calc(50%-140px)] bottom-12 sm:bottom-16 md:bottom-20 rotate-[25deg] bg-yellow-400 rounded-xl" />
         <div className="absolute w-12 sm:w-16 md:w-20 h-12 sm:h-16 md:h-20 rounded-full border-4 sm:border-5 border-white left-[calc(50%-80px)] sm:left-[calc(50%-100px)] md:left-[calc(50%-120px)] bottom-8 sm:bottom-10 md:bottom-12 bg-[#FE7A15]" />
         <div className="absolute w-12 sm:w-16 md:w-20 h-12 sm:h-16 md:h-20 left-[calc(50%-40px)] sm:left-[calc(50%-60px)] md:left-[calc(50%-80px)] bottom-12 sm:bottom-16 md:bottom-20 rotate-[25deg] bg-sky-400 rounded-xl border-4 sm:border-5 border-white" />
-        <div className="absolute w-32 sm:w-36 md:w-40 text-black text-base sm:text-lg md:text-xl font-sans font-bold font-['Nunito_Sans'] left-[calc(50%+20px)] sm:left-[calc(50%+40px)] md:left-[calc(50%+60px)] bottom-10 sm:bottom-12 md:bottom-14">
+        <div className="absolute w-32 sm:w-36 md:w-40 text-black text-base sm:text-lg md:text-xl  font-bold font-['Nunito_Sans'] left-[calc(50%+20px)] sm:left-[calc(50%+40px)] md:left-[calc(50%+60px)] bottom-10 sm:bottom-12 md:bottom-14">
           We Build the Future of Radio
         </div>
         
       </div>
 
       {/* Why Donate Section */}
-      <div className="text-center my-4 sm:my-6 text-2xl sm:text-3xl md:text-4xl text-white font-sans font-['Nunito_Sans'] leading-tight px-4">
+      <div className="text-center my-4 sm:my-6 text-2xl sm:text-3xl md:text-4xl text-white  font-['Nunito_Sans'] leading-tight px-4">
         Why Donate with AirOS? 🎙️🎶
       </div>
       <div className="px-4 sm:px-6 md:px-8 py-8 sm:py-12 bg-[#122]">
         <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-6 sm:gap-8 md:gap-12">
           {/* Left: Text Section */}
           <div className="text-white max-w-full md:max-w-xl space-y-4 sm:space-y-6">
-            <p className="text-base sm:text-lg md:text-xl font-sans font-bold font-['Nunito_Sans'] leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl  font-bold font-['Nunito_Sans'] leading-relaxed">
               Your support keeps AirOS thriving as a community-driven, multicultural radio station that connects people worldwide through music, podcasts, and engaging content. Here’s why your donation matters.
             </p>
-            <div className="text-base sm:text-lg md:text-xl font-sans font-normal font-['Nunito_Sans'] leading-loose space-y-2">
+            <div className="text-base sm:text-lg md:text-xl  font-normal font-['Nunito_Sans'] leading-loose space-y-2">
               <p>💛 Support Independent Radio – Listener-powered, ad-free streaming.</p>
               <p>🎵 Keep the Music Alive – 24/7 live shows, podcasts & diverse music.</p>
               <p>📡 Improve Streaming & Content – Better quality, more exclusive content.</p>
               <p>🎤 Empower Voices & Talent – Support hosts, podcasters & artists.</p>
             </div>
-            <p className="text-base sm:text-lg md:text-xl font-sans font-normal font-['Nunito_Sans'] leading-loose">
+            <p className="text-base sm:text-lg md:text-xl  font-normal font-['Nunito_Sans'] leading-loose">
               Every donation makes a difference! 🔗 Donate Today & Keep AirOS Alive! 💙
             </p>
           </div>
@@ -259,14 +263,14 @@ const DonateUs = () => {
             className="w-full h-full object-cover rounded-lg"
           />
           <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex flex-wrap items-end gap-2 sm:gap-4">
-            <div className="text-white font-sans font-['Nunito_Sans'] text-[clamp(32px,10vw,120px)] sm:text-[clamp(40px,12vw,140px)] md:text-[clamp(48px,12vw,160px)] leading-none">
+            <div className="text-white  font-['Nunito_Sans'] text-[clamp(32px,10vw,120px)] sm:text-[clamp(40px,12vw,140px)] md:text-[clamp(48px,12vw,160px)] leading-none">
               Fund
             </div>
             <div className="flex flex-col justify-center leading-none">
-              <div className="text-white font-sans font-['Nunito_Sans'] text-[clamp(20px,5vw,36px)] sm:text-[clamp(24px,5vw,40px)] md:text-[clamp(24px,5vw,48px)]">
+              <div className="text-white  font-['Nunito_Sans'] text-[clamp(20px,5vw,36px)] sm:text-[clamp(24px,5vw,40px)] md:text-[clamp(24px,5vw,48px)]">
                 Help
               </div>
-              <div className="text-white font-sans font-['Nunito_Sans'] text-[clamp(20px,5vw,36px)] sm:text-[clamp(24px,5vw,40px)] md:text-[clamp(24px,5vw,48px)]">
+              <div className="text-white  font-['Nunito_Sans'] text-[clamp(20px,5vw,36px)] sm:text-[clamp(24px,5vw,40px)] md:text-[clamp(24px,5vw,48px)]">
                 Others
               </div>
             </div>
@@ -287,13 +291,13 @@ const DonateUs = () => {
               />
             </div>
             <div className="w-full md:w-1/2 flex flex-col items-center justify-center text-center px-4">
-              <p className="text-white text-base sm:text-lg md:text-xl font-sans font-normal font-['Nunito_Sans'] mb-2">
+              <p className="text-white text-base sm:text-lg md:text-xl  font-normal font-['Nunito_Sans'] mb-2">
                 Be The Part Of FundRaisers With Over
               </p>
-              <h1 className="text-white text-[clamp(48px,10vw,100px)] sm:text-[clamp(60px,12vw,140px)] md:text-[clamp(80px,12vw,160px)] font-sans font-['Space_Grotesk'] leading-tight">
+              <h1 className="text-white text-[clamp(48px,10vw,100px)] sm:text-[clamp(60px,12vw,140px)] md:text-[clamp(80px,12vw,160px)]  font-['Space_Grotesk'] leading-tight">
                 10,000+
               </h1>
-              <p className="text-white text-base sm:text-lg md:text-xl font-sans font-normal font-['Nunito_Sans'] mt-2">
+              <p className="text-white text-base sm:text-lg md:text-xl  font-normal font-['Nunito_Sans'] mt-2">
                 People from around the world Joined
               </p>
             </div>

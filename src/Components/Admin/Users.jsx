@@ -4,12 +4,15 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addCount } from "../../utils/countUserSlice";
 const Users = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [userData, setAllUserData] = useState([]);
 
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchAllUsers = async () => {
-      const response = await axios.get("http://localhost:8080/admin/users", {
+        const response = await axios.get(
+            `${API_BASE_URL}/admin/users`
+            , {
         withCredentials: true,
       });
       setAllUserData(response.data);

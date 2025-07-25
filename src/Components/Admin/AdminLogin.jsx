@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { validateData } from "../../config/validate";
 import axios from "axios";
 const AdminLogin = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -20,7 +22,9 @@ const AdminLogin = () => {
       if (isValid == null) {
         setError(isValid);
 
-        const loginData = axios.post("http://localhost:8080/loginData", {
+          const loginData = axios.post(
+              `${API_BASE_URL}/loginData`
+              , {
           email: email,
           password: password,
         });

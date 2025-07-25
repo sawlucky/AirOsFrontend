@@ -7,6 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [interest] = useState([
     "Query",
     "Promotion",
@@ -49,8 +50,9 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
-      const responseData = await axios.post(
-        "http://localhost:8080/contactus",
+        const responseData = await axios.post(
+          `${API_BASE_URL}/contactus`
+        ,
         {
           email: contactDetails.email,
           name: contactDetails.name,

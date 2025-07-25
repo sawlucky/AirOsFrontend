@@ -3,6 +3,7 @@ import axios from "axios";
 import SchedulePopup from "./SchedulePopup";
 
 const Schedule = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [showPopup, setShowPopup] = useState(false);
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -13,8 +14,9 @@ const Schedule = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await axios.get(
-          "http://localhost:8080/admin/getEvents"
+          const response = await axios.get(
+            `${API_BASE_URL}/admin/getEvents`
+          
         );
         if (response.data) {
           setEvents(response.data); // Set the fetched events to the events state
@@ -51,8 +53,9 @@ const Schedule = () => {
       formData.append("overrun", newEvent.overrun);
       if (newEvent.image) formData.append("image", newEvent.image);
 
-      const response = await axios.post(
-        "http://localhost:8080/admin/schedule",
+        const response = await axios.post(
+           `${API_BASE_URL}/admin/schedule`
+       ,
         formData,
         {
           withCredentials: true,
@@ -78,7 +81,7 @@ const Schedule = () => {
     try {
       setIsLoading(true);
       const response = await axios.delete(
-        `http://localhost:8080/admin/deleteEvent/${id}`,
+        `${API_BASE_URL}/admin/deleteEvent/${id}`,
         {
           withCredentials: true,
         }

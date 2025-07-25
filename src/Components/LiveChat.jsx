@@ -1,11 +1,9 @@
-
-
-
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
 
 const LiveChat = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const loggedInUser = useSelector((store) => store?.user?.loggedInUser?.username);
   const [userMessage, setUserMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -48,7 +46,7 @@ const LiveChat = () => {
   };
 
   useEffect(() => {
-    socketRef.current = io("http://localhost:8080");
+    socketRef.current = io(`${API_BASE_URL}`);
 
     socketRef.current.on("all_messages", (data) => {
       const formatted = data.map((msg) => ({
@@ -78,7 +76,7 @@ const LiveChat = () => {
   }, [loggedInUser]);
 
   return (
-    <div className="w-full h-[70vh] sm:h-[540px] md:h-[60vh] lg:h-[70vh] relative bg-[#191919] rounded-lg overflow-hidden border border-[#191919]">
+    <div className="w-full h-[70vh] sm:h-[540px] md:h-[60vh] lg:h-[97.5vh] relative bg-[#191919] rounded-lg overflow-hidden border border-[#191919]">
       {/* Messages */}
       <div className="h-[calc(100%-60px)] sm:h-[calc(100%-70px)] overflow-y-auto p-2 sm:p-4 space-y-2 sm:space-y-3">
         {messages.map((msg, index) => (
