@@ -57,7 +57,7 @@ const Navbar = () => {
       await axios.post(`${API_BASE_URL}/logout`, {}, { withCredentials: true });
       setUserData(null);
     //   dispatch(removeUser());
-      window.location.reload();
+      window.location.reload(); 
       navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
@@ -113,7 +113,7 @@ const Navbar = () => {
           {/* Play Button */}
           <button className="px-3 sm:px-4 py-2 bg-[#F2EEE9] border-[2px] sm:border-[3px] border-[#E8E4E1] rounded-full flex items-center justify-center h-[35px]">
             <span className="text-black text-sm sm:text-base font-semibold font-['Nunito Sans'] tracking-[-0.32px]">
-              Play Radio
+              <Link to={"/live"}>Play Radio</Link>
             </span>
           </button>
 
@@ -255,130 +255,130 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-       {isMobileMenuOpen && (
-  <div className="fixed inset-0 bg-[#122]/95 z-40 flex flex-col  pl-8 justify-center transition-opacity duration-300">
-    <button
-      onClick={toggleMobileMenu}
-      className="absolute top-6 right-6 text-white focus:outline-none"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
-    {/* "Air OS" Text at Top Left */}
-    <div className="absolute top-6 left-8 flex items-center gap-2">
-      <span className="text-white text-2xl font-bold font-['Nunito Sans']">
-        Air
-      </span>
-      <span className="text-[#C8C6C5] text-2xl font-bold font-['Nunito Sans']">
-        OS
-      </span>
-    </div>
-    <div className="flex flex-col gap-6">
-      {[
-        { name: "Home", path: "/" },
-        { name: "Donate", path: "/donate" },
-        { name: "About", path: "/about" },
-        { name: "Live", path: "/live" },
-        { name: "Contact", path: "/contact" },
-      ].map((item) => (
-        <Link
-          key={item.name}
-          to={item.path}
-          onClick={toggleMobileMenu}
-          className="text-white text-xl font-medium font-['Nunito Sans'] hover:text-gray-400 transition-colors"
-          style={{ fontFeatureSettings: "'liga' off, 'clig' off" }}
-        >
-          {item.name}
-        </Link>
-      ))}
-    </div>
-    {/* Sign In / Profile Section */}
-    <div className="mt-6 px-2 py-2 mr-6 bg-yellow-300  flex items-center gap-2  rounded-full cursor-pointer hover:bg-yellow-100 transition-colors">
-      {userData ? (
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
-            {userData.avatar ? (
-              <img
-                src={userData.avatar}
-                alt={userData.username}
-                className="w-full h-full object-cover"
-              />
-            ) : (
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 bg-[#122]/95 z-40 flex flex-col  pl-8 justify-center transition-opacity duration-300">
+            <button
+              onClick={toggleMobileMenu}
+              className="absolute top-6 right-6 text-white focus:outline-none"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-gray-600"
               >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
-            )}
+            </button>
+            {/* "Air OS" Text at Top Left */}
+            <div className="absolute top-6 left-8 flex items-center gap-2">
+              <span className="text-white text-2xl font-bold font-['Nunito Sans']">
+                Air
+              </span>
+              <span className="text-[#C8C6C5] text-2xl font-bold font-['Nunito Sans']">
+                OS
+              </span>
+            </div>
+            <div className="flex flex-col gap-6">
+              {[
+                { name: "Home", path: "/" },
+                { name: "Donate", path: "/donate" },
+                { name: "About", path: "/about" },
+                { name: "Live", path: "/live" },
+                { name: "Contact", path: "/contact" },
+              ].map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  onClick={toggleMobileMenu}
+                  className="text-white text-xl font-medium font-['Nunito Sans'] hover:text-gray-400 transition-colors"
+                  style={{ fontFeatureSettings: "'liga' off, 'clig' off" }}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+            {/* Sign In / Profile Section */}
+            <div className="mt-6 px-2 py-2 mr-6 bg-yellow-300  flex items-center gap-2  rounded-full cursor-pointer hover:bg-yellow-100 transition-colors">
+              {userData ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
+                    {userData.avatar ? (
+                      <img
+                        src={userData.avatar}
+                        alt={userData.username}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-gray-600"
+                      >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                      </svg>
+                    )}
+                  </div>
+                  <span className="text-black text-sm font-medium font-['Nunito Sans']">
+                    {userData.username}
+                  </span>
+                  <button
+                    onClick={() => {
+                      HandleLogout();
+                      toggleMobileMenu();
+                    }}
+                    className="ml-2 text-red-500 text-sm font-medium"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => {
+                    handleSignInClick();
+                    toggleMobileMenu();
+                  }}
+                  className="flex items-center justify-center gap-2 hover:bg-yellow-300 transition-colors rounded-full px-3 py-1"
+                >
+                  <div className="w-8 h-8 rounded-full bg-yellow-400 bg-gray-100 border border-gray-200 flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="#112222"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-gray-600"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </div>
+                  <span className="text-black items-center justify-center bg-yellow-300 text-lg font-medium font-['Nunito Sans']">
+                    Sign in
+                  </span>
+                </button>
+              )}
+            </div>
           </div>
-          <span className="text-black text-sm font-medium font-['Nunito Sans']">
-            {userData.username}
-          </span>
-          <button
-            onClick={() => {
-              HandleLogout();
-              toggleMobileMenu();
-            }}
-            className="ml-2 text-red-500 text-sm font-medium"
-          >
-            Sign out
-          </button>
-        </div>
-      ) : (
-        <button
-          onClick={() => {
-            handleSignInClick();
-            toggleMobileMenu();
-          }}
-          className="flex items-center justify-center gap-2 hover:bg-yellow-300 transition-colors rounded-full px-3 py-1"
-        >
-          <div className="w-8 h-8 rounded-full bg-yellow-400 bg-gray-100 border border-gray-200 flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="#112222"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-600"
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </div>
-          <span className="text-black items-center justify-center bg-yellow-300 text-lg font-medium font-['Nunito Sans']">
-            Sign in
-          </span>
-        </button>
-      )}
-    </div>
-  </div>
-)}
+        )}
       </div>
     </nav>
   );
