@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import AllShows from "../utils/TalkShow";
 import BuisnessPlan from "../assets/PodcastTalk/BusinessPlan.png";
 import GoodTeam from "../assets/PodcastTalk/GoodTeam.png";
