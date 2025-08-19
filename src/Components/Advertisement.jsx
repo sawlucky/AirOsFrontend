@@ -63,7 +63,7 @@ const Advertisement = () => {
 
           {/* Email Section */}
           <div className="flex opacity-70 justify-start text-[#192434] pr-4 md:pr-7 text-base md:text-lg font-normal font-['Inter'] leading-snug tracking-tight text-center gap-2 md:gap-3">
-            name@email.com
+            amirthamradio@gmail.com
           </div>
 
           {/* Join Now Button Section */}
