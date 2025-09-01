@@ -73,12 +73,11 @@ const Navbar = () => {
       <div className="w-full max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-y-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <span className="text-white text-2xl sm:text-3xl font-bold font-['Nunito Sans']">
-            Air
-          </span>
-          <span className="text-[#C8C6C5] text-2xl sm:text-4xl font-bold font-['Nunito Sans']">
-            OS
-          </span>
+                <img 
+  src="./images/snewLogo.jpg" 
+  alt="Logo" 
+  className="w-[130px] h-[50px] object-contain" 
+/>
         </div>
 
         {/* Navigation Links (Desktop) */}
