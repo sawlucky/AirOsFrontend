@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import Advertisement from "./Advertisement";
 import { Link } from "react-router-dom";
@@ -131,3 +129,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

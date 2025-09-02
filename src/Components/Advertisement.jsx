@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Advertisement = () => {
   return (
     <div className="bg-[#122]">
@@ -67,11 +67,13 @@ const Advertisement = () => {
           </div>
 
           {/* Join Now Button Section */}
-          <div className="w-full md:w-auto h-12 md:h-[50.17px] px-4 md:px-[42.78px] my-2 md:my-[21.39px] bg-[#192434] rounded-[14.26px] flex justify-center items-center gap-2 md:gap-[14.26px]">
-            <div className="text-white text-base md:text-lg font-bold font-['Inter'] leading-snug tracking-tight">
-              Join Now
+          <Link to="/contact">
+            <div className="w-full md:w-auto h-12 md:h-[50.17px] px-4 md:px-[42.78px] my-2 md:my-[21.39px] bg-[#192434] rounded-[14.26px] flex justify-center items-center gap-2 md:gap-[14.26px]">
+              <div className="text-white text-base md:text-lg font-bold font-['Inter'] leading-snug tracking-tight">
+                Join Now
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
