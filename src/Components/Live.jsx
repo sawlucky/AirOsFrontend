@@ -115,11 +115,16 @@ const [showChat, setShowChat] = useState(false);
                 <div className="w-full h-32 sm:h-48 md:h-56 bg-white rounded-xl sm:rounded-3xl overflow-hidden relative">
                   {event.eventThumbnail && (
                     <img
-                      src={`$
-                        import.meta.env.VITE_CLOUDFRONT_DOMAIN_NAME
-                      }/${event.eventThumbnail.split("/").pop()}`}
+                      src={
+                        event.eventThumbnail.startsWith('http')
+                          ? event.eventThumbnail
+                          : import.meta.env.VITE_CLOUDFRONT_DOMAIN_NAME
+                          ? `${import.meta.env.VITE_CLOUDFRONT_DOMAIN_NAME}/${event.eventThumbnail.split('/').pop()}`
+                          : `/images/${event.eventThumbnail.split('/').pop()}`
+                      }
                       alt="Event thumbnail"
                       className="w-full h-full object-cover"
+                      onError={e => { e.target.onerror = null; e.target.src = '/images/default.jpg'; }}
                     />
                   )}
                   <div className="absolute inset-0 rounded-t-xl sm:rounded-t-3xl bg-gradient-to-b from-transparent to-black/10"></div>
