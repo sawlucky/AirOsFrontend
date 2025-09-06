@@ -76,7 +76,7 @@ const Navbar = () => {
           <img
             src="./images/snewLogo.png"
             alt="Logo"
-            className="w-[130px] h-[50px] object-contain"
+            className="w-full h-[50px] object-contain"
           />
         </div>
 

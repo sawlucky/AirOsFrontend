@@ -115,7 +115,7 @@ const [showChat, setShowChat] = useState(false);
                 <div className="w-full h-32 sm:h-48 md:h-56 bg-white rounded-xl sm:rounded-3xl overflow-hidden relative">
                   {event.eventThumbnail && (
                     <img
-                      src={`${
+                      src={`$
                         import.meta.env.VITE_CLOUDFRONT_DOMAIN_NAME
                       }/${event.eventThumbnail.split("/").pop()}`}
                       alt="Event thumbnail"
@@ -124,6 +124,12 @@ const [showChat, setShowChat] = useState(false);
                   )}
                   <div className="absolute inset-0 rounded-t-xl sm:rounded-t-3xl bg-gradient-to-b from-transparent to-black/10"></div>
                 </div>
+              </div>
+
+              {/* Title & Description Section */}
+              <div className="w-full px-3 sm:px-5 pt-2">
+                <h2 className="text-white text-lg sm:text-xl font-bold font-['Nunito Sans'] truncate" title={event.title}>{event.title}</h2>
+                <p className="text-zinc-300 text-sm sm:text-base font-normal font-['Nunito Sans'] line-clamp-2" title={event.description}>{event.description}</p>
               </div>
 
               {/* Content Container */}

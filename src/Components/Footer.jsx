@@ -16,7 +16,7 @@ const Footer = () => {
        <img 
   src="./images/snewLogo.png" 
   alt="Logos" 
-  className="w-auto h-[80px] lg:h-[100px] object-contain" 
+  className="w-full h-[50px]  object-contain" 
 />
       </div>
     </div>
