@@ -70,14 +70,14 @@ const Navbar = () => {
 
   return (
     <nav className="w-full bg-[#122] px-4 sm:px-6 lg:px-12 py-4 relative z-50">
-      <div className="w-full max-w-screen-xl mx-auto flex flex-wrap items-center justify-between gap-y-4">
+      <div className="w-full max-w-screen-xl  mx-auto flex flex-wrap items-center justify-between gap-y-4">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-                <img 
-  src="./images/snewLogo.jpg" 
-  alt="Logo" 
-  className="w-[130px] h-[50px] object-contain" 
-/>
+        <div className="flex items-center gap-2 ">
+          <img
+            src="./images/snewLogo.png"
+            alt="Logo"
+            className="w-[130px] h-[50px] object-contain"
+          />
         </div>
 
         {/* Navigation Links (Desktop) */}
