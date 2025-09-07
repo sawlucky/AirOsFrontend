@@ -6,11 +6,12 @@ import AboutUs from "./Components/AboutUs";
 import Navbar from "./Components/Navbar";
 import DonateUs from "./Components/DonateUs";
 import Contact from "./Components/Contact";
-import AdminPannel from "./Components/AdminPannel";
-import AdminLogin from "./Components/Admin/AdminLogin"
+// import AdminPannel from "./Components/AdminPannel";
+// import AdminLogin from "./Components/Admin/AdminLogin"
 import PaymentUnsuccessful from "./Components/PaymentUnsuccessful";
 import PaymentSuccess from "./Components/PaymentSuccess";
 import ErrorPage from "./Components/ErrorPage";
+import AuthSuccess from "./Components/AuthSuccess";
 const App = () => {
   const appRouter = createBrowserRouter([
     {
@@ -38,10 +39,10 @@ const App = () => {
       path: "/contact",
       element: <Contact />,
     },
-    // {
-    //   path: "/admin",
-    //   element: <AdminPannel />,
-    // },
+    {
+      path: "/auth/success",
+      element: <AuthSuccess />,
+    },
     // {
     //   path: "/adminLogin",
     //   element: <AdminLogin />,

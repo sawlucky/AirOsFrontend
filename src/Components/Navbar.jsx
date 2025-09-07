@@ -9,6 +9,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
   const [userData, setUserData] = useState(null);
+  const [token, setToken] = useState(() => localStorage.getItem("token"));
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -25,39 +26,56 @@ const Navbar = () => {
 //       setUserData(null);
 //     }
 //   };
-
- useEffect(() => {
-   const fetchUserData = async () => {
-     try {
-       const response = await axios.get(`${API_BASE_URL}/user`, {
-         withCredentials: true,
-       });
-
-       const user = response.data;
-       setUserData(user);
-       console.log("Fetched User:", user);
-
-       dispatch(addUser({ loggedInUser: user }));
-     } catch (error) {
-       console.error("User fetch error:", error);
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ const fetchUserData = async () => {
+   try {
+     if (!token) {
        setUserData(null);
+       dispatch(removeUser());
+       return;
      }
-   };
+     const response = await axios.get(`${API_BASE_URL}/auth/user`, {
+       headers: {
+         Authorization: `Bearer ${token}`,
+       },
+     });
+     const user = response.data;
+     setUserData(user);
+     dispatch(addUser({ loggedInUser: user }));
+   } catch (error) {
+     console.error("User fetch error:", error);
+     setUserData(null);
+     dispatch(removeUser());
+   }
+ };
+  useEffect(() => {
+   
+    fetchUserData();
+  }, [API_BASE_URL, dispatch, fetchUserData, token]);
 
-   fetchUserData();
- }, [API_BASE_URL, dispatch]);
+  // Listen for token changes in localStorage (e.g., after login or logout)
+  useEffect(() => {
+    const handleStorage = (e) => {
+      if (e.key === "token") {
+        setToken(e.newValue);
+      }
+    };
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
 
     const handleSignInClick = () => {
     //   alert("This function will be working soon")
-    window.location.href = `${API_BASE_URL}/auth/google`;
+  window.location.href = `${API_BASE_URL}/auth/google`;
   };
 
   const HandleLogout = async () => {
     try {
-      await axios.post(`${API_BASE_URL}/logout`, {}, { withCredentials: true });
+      localStorage.removeItem("token");
+      setToken(null);
       setUserData(null);
       dispatch(removeUser());
-      window.location.reload(); 
+      window.location.reload();
       navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
