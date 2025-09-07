@@ -55,11 +55,11 @@ const App = () => {
     {
       path: "/success",
       element: <PaymentSuccess />,
-      },
-      {
-          path: "*",
-          element:<ErrorPage/>
-    }
+    },
+    {
+      path: "*",
+      element: <ErrorPage />,
+    },
   ]);
   return (
     <div>
