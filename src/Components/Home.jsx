@@ -8,20 +8,20 @@ const Home = () => {
       <div className="w-full max-h-[627.8px] overflow-hidden relative">
         {/* KKSF FM AM part */}
         <div className="flex flex-col items-center justify-center text-center gap-[4.529px] mt-20 mx-4 mb-10 lg:items-start lg:text-left lg:w-[250px] lg:mx-[110px] lg:mt-[150px]">
-          <div className="text-[#FFF] text-[32px] sm:text-[40.22px] font-[Nunito Sans] font-[400] leading-normal">
-            KKSF
+          <div className="text-[#FFF] text-[32px] sm:text-[25.22px] font-[Nunito Sans] font-[400] leading-normal">
+            Independent Music
           </div>
 
-          <div className="text-white text-6xl sm:text-8xl font-normal font-ralewaydots">
-            103:7
+          <div className="text-white text-6xl sm:text-4xl font-normal font-['Inter']">
+            Cross-Borders
           </div>
 
           <div className="inline-flex justify-center items-center gap-[20px] sm:gap-[29.59px]">
             <div className="text-[#eab557] text-[22px] sm:text-[26.74px] font-semibold font-['Inter'] cursor-pointer">
-              FM
+              LIVE
             </div>
             <div className="text-[#d5d2c6] text-[22px] sm:text-[27.20px] font-semibold font-['Inter'] cursor-pointer">
-              AM
+              24x7
             </div>
           </div>
         </div>

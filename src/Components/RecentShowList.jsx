@@ -87,7 +87,7 @@ const RecentShowList = () => {
               />
             </div>
             <div className="space-y-4">
-              {["Desi Beats", "Game Time", "Real Stories", "Top Hits", "Mind Space"].map((show) => (
+              {["Tamil Music", "English Music", "Bhajan", "Tamil Classic", "Hindi Music"].map((show) => (
                 <div
                   key={show}
                   className="flex flex-col items-start gap-4 p-3 hover:bg-stone-100 cursor-pointer transition border-zinc-500 border-t-2"
