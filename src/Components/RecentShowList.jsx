@@ -1,24 +1,24 @@
 import React from 'react';
 import arijit from "../assets/arijitSingh.png";
-
+import { Link } from "react-router-dom";
 const RecentShowList = () => {
   return (
     <div className="min-h-screen p-4 md:p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_repeat(2,1fr)] grid-rows-auto gap-5">
-        
         {/* Donation Card */}
         <div className="bg-[#EBEBE6] p-6 md:p-8 rounded-[20px] flex flex-col justify-between">
           <div className="flex flex-col md:flex-row justify-start">
             <div className="mt-4 md:mt-12 lg:mt-[100px]">
               <div className="w-full md:w-80 text-black text-base font-normal font-['Poppins']">
-                Donate & keep our radio alive. Get exclusive content by becoming a premium supporter!
+                Donate & keep our radio alive. Get exclusive content by becoming
+                a premium supporter!
               </div>
-              <div
-                className="w-40 h-9 px-8 py-2 my-6 bg-stone-100 rounded-3xl outline outline-[3px] outline-stone-200 inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer"
-              >
-                <div className="w-full text-center text-black text-base font-semibold font-['Inter'] leading-tight">
-                  Donate Now
-                </div>
+              <div className="w-40 h-9 px-8 py-2 my-6 bg-stone-100 rounded-3xl outline outline-[3px] outline-stone-200 inline-flex justify-center items-center gap-2 overflow-hidden cursor-pointer">
+                <Link to="/donate">
+                  <div className="w-full text-center text-black text-base font-semibold font-['Inter'] leading-tight">
+                    Donate Now
+                  </div>
+                </Link>
               </div>
             </div>
             <div className="hidden md:block">
@@ -29,7 +29,6 @@ const RecentShowList = () => {
                 viewBox="0 0 135 153"
                 fill="none"
               >
-              
                 <g clipPath="url(#clip0_675_3998)">
                   <rect width="135" height="153" fill="#EBEBE6" />
                   <path
@@ -37,7 +36,7 @@ const RecentShowList = () => {
                     fill="#565448"
                   />
                 </g>
-               <defs>
+                <defs>
                   <clipPath id="clip0_675_3998">
                     <rect width="135" height="153" fill="white" />
                   </clipPath>
@@ -60,13 +59,22 @@ const RecentShowList = () => {
               className="w-32 h-32 object-cover rounded-lg mx-auto md:mx-0"
             />
             <div className="flex justify-center md:justify-start items-center gap-4 mt-4">
-              <button aria-label="Previous Episode" className="p-2 hover:bg-stone-200 rounded-full transition">
+              <button
+                aria-label="Previous Episode"
+                className="p-2 hover:bg-stone-200 rounded-full transition"
+              >
                 ◁
               </button>
-              <button aria-label="Pause Episode" className="p-2 hover:bg-stone-200 rounded-full transition">
+              <button
+                aria-label="Pause Episode"
+                className="p-2 hover:bg-stone-200 rounded-full transition"
+              >
                 ⏸
               </button>
-              <button aria-label="Play Episode" className="p-2 hover:bg-stone-200 rounded-full transition">
+              <button
+                aria-label="Play Episode"
+                className="p-2 hover:bg-stone-200 rounded-full transition"
+              >
                 ▷
               </button>
             </div>
@@ -87,7 +95,13 @@ const RecentShowList = () => {
               />
             </div>
             <div className="space-y-4">
-              {["Tamil Music", "English Music", "Bhajan", "Tamil Classic", "Hindi Music"].map((show) => (
+              {[
+                "Tamil Music",
+                "English Music",
+                "Bhajan",
+                "Tamil Classic",
+                "Hindi Music",
+              ].map((show) => (
                 <div
                   key={show}
                   className="flex flex-col items-start gap-4 p-3 hover:bg-stone-100 cursor-pointer transition border-zinc-500 border-t-2"
@@ -107,7 +121,8 @@ const RecentShowList = () => {
                 Arijit Singh
               </h2>
               <p className="text-black text-base font-['Poppins'] max-w-full md:max-w-[192px]">
-                Celebrating the voice behind today's biggest hits. Listen to his exclusive playlist!
+                Celebrating the voice behind today's biggest hits. Listen to his
+                exclusive playlist!
               </p>
             </div>
             <img
@@ -130,7 +145,6 @@ const RecentShowList = () => {
             className="absolute inset-0 w-full h-full object-cover brightness-50"
           />
         </div>
-
       </div>
     </div>
   );
